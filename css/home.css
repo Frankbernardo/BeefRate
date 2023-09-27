@@ -1,0 +1,31 @@
+body {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px;
+    text-align: center;
+}
+
+.paragraph {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.nav-link {
+    margin-right: 15px;
+}
