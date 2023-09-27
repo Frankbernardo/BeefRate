@@ -1,0 +1,42 @@
+.form_med {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+}
+
+.form-group {
+    background-color: #333;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.edit_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+.edit_btn:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}

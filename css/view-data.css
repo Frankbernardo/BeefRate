@@ -1,0 +1,60 @@
+.center-text {
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.nav-link {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+}
+
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+#data-table th, #data-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+
+table {
+    width: 80%;
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+
+
+table thead {
+    background-color: #333;
+}
+
+table th {
+    padding: 10px;
+    border: 1px solid #555;
+    color: white;
+    text-align: left;
+}
+
+
+table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+    background-color: #ddd;
+}
+
+table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
