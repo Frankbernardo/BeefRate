@@ -1,19 +1,30 @@
-document.getElementById("submit").addEventListener("click", function() {
-    let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    const newReview = {
-        name: document.getElementById("input1").value,
-        location: document.getElementById("input2").value,
-        type: document.getElementById("input3").value,
-        value: document.getElementById("input4").value,
-        rating: document.getElementById("input5").value
+document.getElementById('submit').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    let newReview = {
+        name: document.getElementById('input1').value,
+        location: document.getElementById('input2').value,
+        type: document.getElementById('input3').value,
+        value: document.getElementById('input4').value,
+        rating: document.getElementById('input5').value
     };
+    
+    let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
     reviews.push(newReview);
+
     localStorage.setItem('reviews', JSON.stringify(reviews));
-    alert("Review added!");
-    document.querySelectorAll("input").forEach(input => input.value = "");
-    return false;
+
+    clearForm();
 });
 
-document.getElementById("clear").addEventListener("click", function() {
-    document.querySelectorAll("input").forEach(input => input.value = "");
+document.getElementById('clear').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    clearForm();
 });
+
+function clearForm() {
+    document.getElementById('input1').value = '';
+    document.getElementById('input2').value = '';
+    document.getElementById('input3').value = '';
+    document.getElementById('input4').value = '';
+    document.getElementById('input5').value = '';
+}
