@@ -9,7 +9,7 @@ var services = function(app) {
         var id = "lib" + Date.now();
         console.log("name " + req.body.name);
         var burgerData = {
-            resturantName: req.body.name,
+            name: req.body.name,
             location: req.body.location,
             type: req.body.type,
             value: req.body.value,
@@ -67,13 +67,13 @@ var services = function(app) {
                 }
                 else{
                     libraryData = JSON.parse(data);
-                    res.send(JSON.stringify({msg: "SUCCUSS", libraryData: libraryData}));
+                    res.send(JSON.stringify({msg: "SUCCUSS", reviews: libraryData}));
                 }
             })
         }
         else{
             var data = [];
-            res.send(JSON.stringify({msg: "SUCCUSS", libraryData: libraryData}));
+            res.send(JSON.stringify({msg: "SUCCUSS", reviews: libraryData}));
         }
     })
 };

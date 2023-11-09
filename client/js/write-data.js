@@ -1,4 +1,4 @@
-document.getElementById('submit').addEventListener('click', function(e) {
+/*document.getElementById('submit').addEventListener('click', function(e) {
     e.preventDefault(); 
     let newReview = {
         name: document.getElementById('input1').value,
@@ -19,7 +19,7 @@ document.getElementById('submit').addEventListener('click', function(e) {
 document.getElementById('clear').addEventListener('click', function(e) {
     e.preventDefault(); 
     clearForm();
-});
+});*/
 
 function clearForm() {
     document.getElementById('input1').value = '';
@@ -42,7 +42,7 @@ $('#submit').click(function(){
         value: value,
         rating: rating
          };
-
+         console.log(JSON.stringify(jsonObject));
     $.ajax({
         url:'http://localhost:3000' + "/write-record",
         type: "post",
