@@ -3,6 +3,28 @@ var defaultReviews = JSON.parse(defaultReviewsData);
 
 var storedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
 var combinedReviews = defaultReviews.concat(storedReviews); 
+retrieveData();
+function retrieveData(){
+    //ajax to get data from server
+    $.ajax({
+        url: 'http://localhost:3000/get-records',
+        type: 'get',
+        success : function(response){
+            var data = JSON.parse(response);
+            if(data.msg == "SUCCESS"){
+                
+                createReviewData(data.reviews);
+            }else{
+                console.log(data.msg);
+            }
+
+        },
+        error: function(err) {
+            console.log(err)
+        }
+       
+    })
+}
 
 main();
 

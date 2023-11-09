@@ -28,3 +28,36 @@ function clearForm() {
     document.getElementById('input4').value = '';
     document.getElementById('input5').value = '';
 }
+
+$('#submit').click(function(){
+    var name = $('#input1').val();
+    var location = $('#input2').val();
+    var type = $('#input3').val();
+    var value = $('#input4').val();
+    var rating = $('#input5').val();
+
+    var jsonObject = {name : name,
+        location: location,
+        type: type,
+        value: value,
+        rating: rating
+         };
+
+    $.ajax({
+        url:'http://localhost:3000' + "/write-record",
+        type: "post",
+        data: jsonObject,
+        success: function(response){
+            var data = JSON.parse(response);
+            if(data.msg == "SUCCESS"){
+                alert("data successfuly saved")
+            }else{
+                console.log(data.msg);
+            }
+
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    })
+})
