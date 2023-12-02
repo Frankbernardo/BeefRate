@@ -35,16 +35,18 @@ function main () {
 
 function showTable(reviews){
     var htmlString = "";
-    for(var i=0; i<reviews.length; i++) {
+    for(var i = 0; i < reviews.length; i++) {
         htmlString += "<tr>";
             htmlString += "<td>" + reviews[i].name + "</td>";
             htmlString += "<td>" + reviews[i].location + "</td>";
             htmlString += "<td>" + reviews[i].type + "</td>";
             htmlString += "<td>" + reviews[i].value + "</td>";
             htmlString += "<td>" + reviews[i].rating + "</td>";
+            
+            
+
         htmlString += "</tr>";
     }
-
     document.querySelector("#data-table tbody").innerHTML = htmlString;
-
 }
+
