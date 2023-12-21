@@ -1,73 +1,52 @@
-retrieveData();
-function retrieveData(){
-    //ajax to get data from server
-    $.ajax({
-        url: 'http://localhost:3000/get-records',
-        type: 'get',
-        success : function(response){
-            console.log(response)
-            var data = JSON.parse(response);
-            if(data.msg == "SUCCUSS"){
-                
-                showTable(data.reviews);
-            }else{
-                console.log(data.msg);
-            }
+var app = angular.module('myApp', []);
 
-        },
-        error: function(err) {
-            console.log(err)
+app.controller('BrowseDataController', function($scope, $http) {
+    $scope.records = [];
+    $scope.currentIndex = 0;
+
+    $scope.retrieveData = function() {
+        $http.get('http://localhost:3000/get-records')
+            .then(function(response) {
+                var data = response.data;
+                if(data.msg === "SUCCESS"){
+                    $scope.records = data.reviews;
+                    $scope.currentRecord = $scope.records[0];
+                } else {
+                    console.error(data.msg);
+                }
+            }, function(error) {
+                console.error('Error fetching data:', error);
+            });
+    };
+
+    $scope.retrieveData();
+
+    $scope.nextRecord = function() {
+        if ($scope.currentIndex < $scope.records.length - 1) {
+            $scope.currentIndex++;
+            $scope.currentRecord = $scope.records[$scope.currentIndex];
         }
-       
-    })
-}
+    };
 
-// main();
+    $scope.previousRecord = function() {
+        if ($scope.currentIndex > 0) {
+            $scope.currentIndex--;
+            $scope.currentRecord = $scope.records[$scope.currentIndex];
+        }
+    };
 
-function main () {
-    showTable(combinedReviews);
-}
-
-
-function showTable(reviews) {
-    var htmlString = "";
-    for (var i = 0; i < reviews.length; i++) {
-        htmlString += "<tr>";
-        htmlString += "<td>" + reviews[i].name + "</td>";
-        htmlString += "<td>" + reviews[i].location + "</td>";
-        htmlString += "<td>" + reviews[i].type + "</td>";
-        htmlString += "<td>" + reviews[i].value + "</td>";
-        htmlString += "<td>" + reviews[i].rating + "</td>";
-        
-            htmlString += "<td><button class='delete-btn' data-id='" + reviews[i].id + "'>Delete</button></td>";
-        htmlString += "</tr>";
-    }
-    $("#data-table tbody").html(htmlString);
-}
-
-
-function activateDeleteButtons() {
-    $('#data-table').off('click').on('click', '.delete-btn', function() {
-        var deleteID = $(this).data('id');
-        deleteRecord(deleteID);
-    });
-}
-
-function deleteRecord(deleteID) {
-    $.ajax({
-        url: 'http://localhost:3000/delete-record',
-        type: 'DELETE',
-        data: { id: deleteID },
-        success: function(response) {
+    $scope.deleteRecord = function(deleteID) {
+        $http({
+            method: 'DELETE',
+            url: 'http://localhost:3000/delete-record',
+            data: { id: deleteID },
+            headers: { 'Content-Type': 'application/json;charset=utf-8' }
+        })
+        .then(function(response) {
             console.log('Record deleted:', response);
-            retrieveData(); 
-        },
-        error: function(error) {
+            $scope.retrieveData();
+        }, function(error) {
             console.error('Error deleting record:', error);
-        }
-    });
-}
-
-
-
-
+        });
+    };
+});

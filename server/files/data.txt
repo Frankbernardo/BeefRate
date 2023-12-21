@@ -1,1 +1,0 @@
-[{"name":"sdfds","location":"sdfdsf","type":"sdfsdf","value":"sdfsdf","rating":"sdfsdf"},{"name":"fgdfg","location":"dfgdfg","type":"dfgdf","value":"dfgdf","rating":"dfgdg"}]
